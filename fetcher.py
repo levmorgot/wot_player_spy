@@ -33,8 +33,9 @@ def update_info():
                     player_data = data[f"{player_id}"]
                     players.append(player_data)
                     print(datetime.datetime.fromtimestamp(new_last_battle_time))
-                    with connect_kafka_producer() as producer:
-                        publish_message(producer, f"{service_name}", f"{service_name}", f"{players}")
+            if players:
+                with connect_kafka_producer() as producer:
+                    publish_message(producer, f"{service_name}", f"{service_name}", f"{players}")
 
 
 def search_player():
